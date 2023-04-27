@@ -1,14 +1,22 @@
-import { StyleSheet, TextInput, View, Button, Image, Text, FlatList, Modal } from 'react-native';
-import { useState } from 'react';
+import {
+  Button,
+  FlatList,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
+
+import { useState } from "react";
 import Modal from "./src/components/Modal";
 
 export default function App() {
   const [textItem, setTextItem] = useState("");
   const [list, setList] = useState([]);
   const [itemSelected, setItemSelected] = useState({});
-  const [modalVisible, setModalVisible] = useState(false)
+  const [modalVisible, setModalVisible] = useState(false);
 
-  const onHandleChangeText = (text) => {
+  const onHandleChangeText = text => {
     setTextItem(text);
     console.log(text);
   };
@@ -16,29 +24,30 @@ export default function App() {
   const addItem = () => {
     console.log("aqui agregamos el item", textItem);
     setList(prevState => [
-      ...prevState, 
-      {name: textItem, id: Math.random().toString()},
+      ...prevState,
+      { name: textItem, id: Math.random().toString() },
     ]);
     setTextItem("");
   };
 
-  const onHandleDelete = item => {
-    console.log("eliminar este item", item);
-    setList(prevState => prevState.filter(element => element.name !== item.name));
-    setModalVisible(false);
-  }
-  
   const onHandleModal = item => {
     console.log("en esta funcion seteo el item y abro el modal");
     setItemSelected(item);
     setModalVisible(true);
   };
 
+  const onHandleDelete = item => {
+    console.log("eliminar este item", item);
+    setList(prevState =>
+      prevState.filter(element => element.name !== item.name)
+    );
+    setModalVisible(false);
+  };
+
   const renderItem = ({ item }) => (
     <View style={styles.renderItemStyle}>
       <Text>{item.name}</Text>
-      <Button 
-        title="X" onPress={() => onHandleModal(item)} color={"red"}/>
+      <Button title="X" onPress={() => onHandleModal(item)} color={"red"} />
     </View>
   );
 
@@ -53,7 +62,7 @@ export default function App() {
             onChangeText={onHandleChangeText}
             value={textItem}
           />
-          <Button title="Presiona aqui" onPress={addItem} />
+          <Button title="Agregar" onPress={addItem} />
         </View>
       </View>
       <View style={styles.listContainer}>
@@ -75,34 +84,28 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 40,
-    backgroundColor: '#F1D531',
+    backgroundColor: "#E7EAF2",
+  },
+  inputContainer: {
+    height: 200,
+    paddingHorizontal: 30,
+    paddingTop: 80,
   },
   titleContainer: {
     marginBottom: 30,
     fontSize: 40,
     fontWeight: "500",
-    color: "1E283C",
-  },
-  inputContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    height: 200,
-    paddingHorizontal: 30,
-    paddingTop: 80,
-  },
-  input: {
-    borderBottomColor: "black",
-    borderBottomWidth: 2,
-    width: 200,
-    textAlign: 'center',
-    fontSize: 20, 
+    color: "#1E283C",
   },
   addItemContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  input: {
+    borderBottomColor: "black",
+    borderBottomWidth: 2,
+    width: 200,
   },
   listContainer: {
     flex: 2,
@@ -121,7 +124,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     shadowColor: "black",
     shadowOpacity: 0.3,
-    shadowOffset: {width: 0, height: 1},
+    shadowOffset: { width: 0, height: 1 },
     shadowRadius: 2,
     elevation: 3,
   },

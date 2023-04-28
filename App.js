@@ -9,6 +9,7 @@ import {
 
 import { useState } from "react";
 import Modal from "./src/components/Modal";
+import Header from './src/components/Header';
 
 export default function App() {
   const [textItem, setTextItem] = useState("");
@@ -53,11 +54,12 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+        <Header/>
       <View style={styles.inputContainer}>
-        <Text style={styles.titleContainer}>Shopping List</Text>
+        <Text style={styles.titleContainer}>Burger Menu</Text>
         <View style={styles.addItemContainer}>
           <TextInput
-            placeholder="elemento de la lista"
+            placeholder="Buscar producto..."
             style={styles.input}
             onChangeText={onHandleChangeText}
             value={textItem}
@@ -89,13 +91,14 @@ const styles = StyleSheet.create({
   inputContainer: {
     height: 200,
     paddingHorizontal: 30,
-    paddingTop: 80,
+    paddingTop: 10,
   },
   titleContainer: {
     marginBottom: 30,
     fontSize: 40,
     fontWeight: "500",
     color: "#1E283C",
+    textAlign: "center",
   },
   addItemContainer: {
     flexDirection: "row",
@@ -110,7 +113,7 @@ const styles = StyleSheet.create({
   listContainer: {
     flex: 2,
     marginHorizontal: 30,
-    marginTop: 20,
+    marginTop: 10,
     padding: 3,
   },
   renderItemStyle: {

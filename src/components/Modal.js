@@ -12,7 +12,7 @@ import {
       <NewModal visible={isVisible} animationType="fade" transparent={true}>
         <View style={styles.modalContainer}>
           <View>
-            <Text>Estas seguro que desas borrar este elemento?</Text>
+            <Text style={styles.textoAdvertencia}>Seguro que quieres borrar este producto?</Text>
             <Text style={styles.modalTextStyle}>{itemSelected.name}</Text>
             <Button
               title="Eliminar"
@@ -32,6 +32,7 @@ import {
       flex: 1,
       justifyContent: "center",
       alignItems: "center",
+      backgroundColor: "aliceblue",
     },
     modalStyle: {
       margin: 20,
@@ -50,5 +51,10 @@ import {
     },
     modalTextStyle: {
       fontSize: 30,
+      textAlign: "center",
+      padding: 20,
+    },
+    textoAdvertencia: {
+      fontSize: 17,
     },
   });
